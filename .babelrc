@@ -1,0 +1,12 @@
+{
+    "presets": [
+      ["env", {
+        "modules": false,
+        "targets": {
+        // 兼容最新两个版本的浏览器，不用兼容 IE 8，另外市场份额超过 1% 的浏览器也必须支持
+          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+        }
+      }]
+    ]
+  }
+  
