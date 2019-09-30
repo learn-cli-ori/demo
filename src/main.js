@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App';
-/* eslint-disable no-new */
+import router from '@/route/test/index.js';
 new Vue({
-    el: '#app',
-    template: '<App/>',
-    components: { App }
-});
+    router,
+    // store,
+    render: h => h(App)
+}).$mount('#app');

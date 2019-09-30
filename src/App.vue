@@ -1,18 +1,21 @@
 <template>
-  <h1>Hello World!</h1>
+    <keep-alive>
+        <router-view></router-view>
+    </keep-alive>
 </template>
 
 <script>
-  export default {
+export default {
     name: 'App'
-  };
+};
 </script>
 
 <style>
-  html, body {
+html,
+body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-size: 16px;
-  }
+}
 </style>
