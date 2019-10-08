@@ -1,6 +1,7 @@
 <template>
     <section>
-        <button @click="test">接口测试</button>
+        <p class="f-10">测试</p>
+        <button @click="test" class="f-10">接口测试</button>
     </section>
 </template>
 <script>
@@ -25,4 +26,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.f-10{
+    font-size: 10px;
+    animation-delay: 400ms;
+}
 </style>
