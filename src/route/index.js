@@ -1,48 +1,24 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-Vue.use(Router);
+// import login from '../views/login/login.vue';
+// import error from '../views/index/404.vue';
 const test = () =>
     import ('@/views/test.vue');
-const error = () =>
-    import ('@/views/index/404.vue');
-const home = () =>
-    import ('@/views/index/home.vue');
+Vue.use(Router);
 
 export const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [{
-            path: '/test',
-            name: 'test',
-            component: test
-        }, {
-            path: '/home',
-            name: 'home',
-            component: home
-        },
-        {
-            path: '/404',
-            filePath: '/index/404',
-            component: error
-        }
-    ]
+        path: '/test',
+        name: 'test',
+        component: test
+    }]
 });
 
 //默认路由
-export const defalRouter = [{
-    path: '/',
-    name: 'menuIndex',
-    component: () =>
-        import ('@/views/index/menuIndex.vue'),
-    redirect: { name: 'login' },
-    children: [{
-        meta: { title: '首页' },
-        path: '/home',
-        filePath: '/index/home',
-        name: 'home',
-    }]
-}];
+export const defalRouter = [];
 
 export function routerGo(to, next, getRouter) {
     getRouter = [...filterAsyncRouter(getRouter), ...[{
@@ -66,8 +42,5 @@ export function filterAsyncRouter(asyncRouterMap, isChildren) { //遍历后台�
         }
         return true;
     });
-
-    console.log(accessedRouters);
-
     return accessedRouters;
 }

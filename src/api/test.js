@@ -1,10 +1,5 @@
 import { request } from '@/utils/request';
 
-const TEST = '/api/users/test';
+export const test = params => request().get('/api/users/test', params);
 
-export const test = () => {
-    return request({
-        url: TEST,
-        method: 'get'
-    });
-};
+export const test_post = params => request('', { 'Content-Type': 'application/json' }).post('/api/users/test/post', params);

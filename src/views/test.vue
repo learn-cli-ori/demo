@@ -5,28 +5,28 @@
     </section>
 </template>
 <script>
-import { test } from '@/api/test'
+import { test,test_post } from '@/api/test'
 export default {
     data () {
         return {
-            testData:[]
+            testData: [],
+            msg: ''
         }
     },
 
     methods: {
-        test () {
-            test().then((res) => {
-                console.log(res)
-            }).catch((e) => {
-
-            })
+        async test () {
+            let t = await test_post({sex:this.msg});
+            console.log(t);
         }
 
     }
 }
 </script>
+
 <style lang="scss" scoped>
-.f-10{
+
+.f-10 {
     font-size: 10px;
     animation-delay: 400ms;
 }
