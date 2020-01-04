@@ -1,39 +1,24 @@
 const path = require('path');
 
-const TIMESTAMP = new Date().getTime();
 const resolve = dir => {
     return path.join(__dirname, dir);
 };
 
-const ASSETSDIR = 'static';
-const PUBLIC_FILE_NAME = `[name].${process.env.VUE_APP_TYPE}.${TIMESTAMP}`;
 console.log(process.env.VUE_APP_API_URL);
 module.exports = {
     publicPath: './',
-
-    lintOnSave: true,
-
-    productionSourceMap: false,
-
-    configureWebpack: {
-        entry: './src/main.js',
-        output: {
-            filename: `${ASSETSDIR}/js/${PUBLIC_FILE_NAME}.js`,
-            chunkFilename: `${ASSETSDIR}/js/${PUBLIC_FILE_NAME}.js`
-        },
-        resolve: {
-            // 配置别名
-            alias: {
-                '@': resolve('src')
-            }
-        }
-
+    chainWebpack: config => {
+        // 快捷路径地址，可自定义键值对
+        config.resolve.alias.set('@', resolve('src'));
     },
+
     css: {
-        extract: {
-            filename: `${ASSETSDIR}/css/${PUBLIC_FILE_NAME}.css`,
-            chunkFilename: `${ASSETSDIR}/css/${PUBLIC_FILE_NAME}.css`
-        }
+        loaderOptions: {
+            // 全局引入 scss
+            sass: {
+                prependData: `@import "~@/static/style/theme.scss";@import "~@/static/style/mixin.scss";`
+            }
+        },
     },
     devServer: {
         port: 8085, // 端口号

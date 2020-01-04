@@ -2,13 +2,13 @@
  * @Author: lyh
  * @Date: 2019-11-06 11:44:21
  * @Last Modified by: lyh
- * @Last Modified time: 2020-01-02 18:11:03
+ * @Last Modified time: 2020-01-04 16:25:13
  * @Desc 获取权限
  */
 
 import { router, routerGo, defalRouter } from '@/router';
 import { getAdminAuthority } from '@/api/user';
-import store from '@/store/index';
+import store from '@/store';
 
 
 var getRouter; //用来获取后台拿到的路由
@@ -16,7 +16,10 @@ var getRouter; //用来获取后台拿到的路由
 // 重组路由对象
 function reGroup(params) {
     //按需求设置
-    return [];
+    let tempRoute = [...defalRouter];
+
+    tempRoute[0].children = [...tempRoute[0].children, ...params];
+    return tempRoute;
 }
 
 const whiteList = ['/login', '/404']; // 不重定向白名单

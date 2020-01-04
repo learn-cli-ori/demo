@@ -7,6 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        globalLoading: false, // 路由容器全局loading
         userInfo: JSON.parse(Cookies.get("userInfo") || null), //用户信息
         routeInfo: JSON.parse(localStorage.getItem("routeInfo") || null) // 路由信息
     },

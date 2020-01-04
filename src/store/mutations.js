@@ -17,5 +17,8 @@ export default {
         } else {
             localStorage.setItem("routeInfo", JSON.stringify(value))
         }
-    }
+    },
+    setGlobalLoading(state, value) {
+        state.globalLoading = value;
+    },
 };

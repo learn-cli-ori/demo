@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-// import login from '../views/login/login.vue';
-// import error from '../views/index/404.vue';
+import login from '../views/login/login.vue';
+import error from '../views/index/404.vue';
 const test = () =>
     import ('@/views/test.vue');
 Vue.use(Router);
@@ -11,14 +11,33 @@ export const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [{
-        path: '/test',
-        name: 'test',
-        component: test
+        path: '/login',
+        name: 'login',
+        component: login,
+        meta: {
+            title: 'demo'
+        }
+    }, {
+        path: '/404',
+        filePath: '/index/404',
+        component: error
     }]
 });
 
 //默认路由
-export const defalRouter = [];
+export const defalRouter = [{
+    path: '/',
+    name: 'menuIndex',
+    component: () =>
+        import ('@/views/index/menuIndex.vue'),
+    redirect: { name: 'login' },
+    children: [{
+        meta: { title: '首页' },
+        path: '/home',
+        filePath: '/index/home',
+        name: 'home',
+    }]
+}];
 
 export function routerGo(to, next, getRouter) {
     getRouter = [...filterAsyncRouter(getRouter), ...[{
